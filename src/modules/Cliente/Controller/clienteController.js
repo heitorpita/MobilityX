@@ -1,6 +1,4 @@
 import ClienteModel from "../models/clienteModel.js";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 
 export default class ClienteController {
 
@@ -13,7 +11,7 @@ export default class ClienteController {
         const usuarioExistente = await ClienteModel.verificarEmail(email);
         
         if (usuarioExistente) {
-            return res.status(409).json({ msg: "Email já cadastrado" });
+            return res.status(400).json({ msg: "Email já cadastrado" });
         }
 
         const client = await ClienteModel.criar({
@@ -22,7 +20,7 @@ export default class ClienteController {
             email,
             phone
         });
-        return res.status(201).json(user);
+        return res.status(201).json(client);
     }
 
     static async login(req, res){
@@ -37,7 +35,7 @@ export default class ClienteController {
             return res.status(401).json({ msg: "Email inválido" });
         }
         
-        const clientDoc = await ClienteModel.verificarDocumentos(documents);
+        const clientDoc = await ClienteModel.verificarDocumentos(document);
         if(!clientDoc){
             return res.status(401).json({msg:"Documento Invalido"})
         }
