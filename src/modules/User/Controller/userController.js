@@ -1,5 +1,5 @@
-import UsuarioModel from "../models/UsuarioModel.js";
-import bcrypt from "bcryptjs";
+import UsuarioModel from "../Model/userModel.js";
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export default class UsuarioController {

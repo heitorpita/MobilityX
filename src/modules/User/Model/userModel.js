@@ -1,7 +1,10 @@
 import { query } from "../../../db/db.js";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
+import dotenv from "dotenv";
 
-const SALT_ROUNDS = process.env.SALT_ROUNDS;
+dotenv.config();
+
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS, 10);
 
 export default class UsuarioModel {
 
@@ -73,7 +76,7 @@ export default class UsuarioModel {
       name,
       email,
       passwordHash,
-      role || "seller"
+      role
     ]);
 
     return result.rows[0];

@@ -1,4 +1,4 @@
-import ClienteModel from "../models/clienteModel.js";
+import ClienteModel from "../model/clienteModel.js";
 
 export default class ClienteController {
 

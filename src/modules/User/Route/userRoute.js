@@ -1,18 +1,17 @@
 import UsuarioController from "../Controller/userController.js";
 import express from "express";
-import { authenticator } from "../middlewares/auth.middleware.js";
-
+import { authenticator } from "../middlewares/authMiddleware.js";
+import { autorization } from "../middlewares/autorizationMiddleware.js";
 const router = express.Router();
 
 //publica
 
-router.post("/cadastro", UsuarioController.register);
+router.post("/", UsuarioController.register);
 router.post("/login", UsuarioController.login);
 
 //privada(admin)
 router.use(authenticator)
-
-router.get("/", UsuarioController.listar);
-router.delete("/:id", UsuarioController.remover);
+router.get("/", autorization["admin"], UsuarioController.listar);
+router.delete("/:id", autorization["admin"],UsuarioController.remover);
 
 export default router;
