@@ -1,4 +1,4 @@
-function permitirPerfil(perfisPermitidos) {
+export function perfispermitidos(perfisPermitidos) {
  
     let lista = [];
     if (Array.isArray(perfisPermitidos)){
@@ -7,11 +7,11 @@ function permitirPerfil(perfisPermitidos) {
 
     }
     else{
-        lista = [perfispermitidos]
+        lista = [perfisPermitidos]
     }
 
     return (req, res, next) => {
-        const perfil = req.usuario && req.usuario.perfil;
+        const perfil = req.user && req.user.role;
         if (lista.includes(perfil)) {
             return next()
         }
@@ -21,13 +21,13 @@ function permitirPerfil(perfisPermitidos) {
 }
 
 export const autorization = {
-    admin: permitirPerfil(["admin"]),
-    seller: permitirPerfil(["seller"])
+    admin: perfispermitidos(["admin"]),
+    seller: perfispermitidos(["seller"])
 
 
 
 };
 
 
-export { permitirPerfis };
+
 export default autorization;

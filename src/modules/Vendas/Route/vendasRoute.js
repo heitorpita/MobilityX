@@ -1,7 +1,7 @@
 import VendasController from "../Controller/vendasController.js";
 import express from "express";
-import { authenticator } from "../middlewares/authMiddleware.js";
-import { autorization } from "../middlewares/autorizationMiddleware.js";
+import {authenticator}  from "../../../middlewares/authMiddleware.js";
+import  autorization  from "../../../middlewares/autorizationMiddleware.js";
 const router = express.Router();
 
 router.use(authenticator)

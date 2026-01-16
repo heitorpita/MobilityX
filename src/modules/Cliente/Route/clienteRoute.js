@@ -1,7 +1,7 @@
 import ClienteController from "../Controller/clienteController.js";
 import express from "express";
-import { authenticator } from "../middlewares/authMiddleware.js";
-import { autorization } from "../middlewares/autorizationMiddleware.js";
+import { authenticator } from "../../../middlewares/authMiddleware.js";
+import  autorization  from "../../../middlewares/autorizationMiddleware.js";
 const router = express.Router();
 
 router.post("/cadastro", ClienteController.register);

@@ -57,7 +57,7 @@ export default class UsuarioController {
     }
 
     const token = jwt.sign(
-      { id: user.id, role: user.role },
+      { id: user.id, role: user.role , email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN }
     );
@@ -75,8 +75,13 @@ export default class UsuarioController {
 
 
   static async listar(req, res) {
-    const users = await UsuarioModel.listar();
+    try {
+       const users = await UsuarioModel.listar();
     return res.json(users);
+    } catch (error) {
+      res.status(500).json({msg: "Erro ao listar usuarios", erro: error.message})       
+    }
+   
   }
 
 
